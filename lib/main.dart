@@ -18,7 +18,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xFF4285f4),
+      color: Color(0xEE4285f4),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
