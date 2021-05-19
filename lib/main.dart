@@ -19,7 +19,11 @@ class LoadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Color.fromRGBO(66, 133, 244, 1),
+<<<<<<< HEAD
       child: Row(
+=======
+      child: Column(
+>>>>>>> 3f6c056639b48e470317dcf0588200380e09cf01
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Column(
