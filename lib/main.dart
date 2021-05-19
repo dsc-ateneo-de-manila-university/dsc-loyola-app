@@ -18,7 +18,7 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xEE4285f4),
+      color: Color.fromRGBO(66, 133, 244, 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -28,7 +28,7 @@ class LoadingScreen extends StatelessWidget {
               Container(
                 child: CircleAvatar(
                   radius: 36.0,
-                  child: Text('logo'),
+                  child: Text('Logo'),
                 ),
               ),
               Divider(
