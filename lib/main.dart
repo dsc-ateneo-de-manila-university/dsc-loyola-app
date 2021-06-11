@@ -18,27 +18,18 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      return Container(
-      color: Color.fromRGBO(66, 133, 244, 1),
+      color: Color.fromARGB(255, 49, 123, 253),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: [  
               Container(
-                margin: const EdgeInsets.all(10.0),
-                child: CircleAvatar(
-                  child: Text('Logo'),
+                child: Image.asset(
+                  'images/Loading_Screen_1.png',
                 ),
-              ),
-              Text(
-               'Developer Student Clubs Loyola',
-                style: Theme.of(context).textTheme.headline6.copyWith(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
+              )
             ],
           ),
         ],
