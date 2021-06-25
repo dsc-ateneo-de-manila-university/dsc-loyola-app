@@ -38,7 +38,8 @@ class Tracker extends StatelessWidget {
                   "Overview",
                   style: Theme.of(context).textTheme.headline4.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black
+                    color: Colors.black,
+                    fontSize: 24.0,
                   ),
                 ),
               ],
@@ -52,8 +53,8 @@ class Tracker extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: Color.fromARGB(255, 49, 123, 253)
                   ),
-                  height: 96.0,
-                  width: 180.0,
+                  height: 88.0,
+                  width: 163.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -103,8 +104,8 @@ class Tracker extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: Color.fromARGB(255, 49, 123, 253)
                   ),
-                  height: 96.0,
-                  width: 180.0,
+                  height: 88.0,
+                  width: 163.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -160,8 +161,8 @@ class Tracker extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: Color.fromARGB(255, 49, 123, 253)
                   ),
-                  height: 96.0,
-                  width: 180.0,
+                  height: 88.0,
+                  width: 163.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -211,8 +212,8 @@ class Tracker extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     color: Color.fromARGB(255, 49, 123, 253)
                   ),
-                  height: 96.0,
-                  width: 180.0,
+                  height: 88.0,
+                  width: 163.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -267,9 +268,33 @@ class Tracker extends StatelessWidget {
                   "Activity",
                   style: Theme.of(context).textTheme.headline4.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black
+                    color: Colors.black,
+                    fontSize: 24.0
                   ),
                 ),
+              ],
+            ),
+            Divider(height: 16.0,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.1),
+                        spreadRadius: 0.05,
+                        blurRadius: 0.3,
+                        offset: Offset(0, 1),
+                      )
+                    ]    
+                  ),
+                  child: Image.asset(
+                    'images/Horizontal_Card_Sandbox.png',
+                    height: 168.0,
+                    width: 339.0
+                  ),
+                )
               ],
             )
           ],
