@@ -114,7 +114,7 @@ class _LogInState extends State<LogIn> {
                     onSurface: Colors.white,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/', arguments: <String, String> {
+                    Navigator.pushNamed(context, '/Home', arguments: <String, String> {
                       'Username': email,
                       'Password': textController.text,
                     });
