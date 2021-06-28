@@ -124,7 +124,7 @@ class _NavigationState extends State<Navigation> {
             ),
             BottomNavigationBarItem(
               icon: new Icon(
-                  Icons.check_box_outlined,
+                  Icons.mobile_friendly,
                   color: _currentIndex == 2 ? Color(0xff317BFD) : Colors.grey[700]),
               label: "TRACKER",
             ),

@@ -68,7 +68,7 @@ class _FeatureState extends State<Feature> {
                     ],
                   ),
                 ),
-                SizedBox(height: 477.0),
+                SizedBox(height: 477.0), // TODO: make it constrained to bottom para kahit anong gadget puwede
                 SafeArea(
                   minimum: const EdgeInsets.symmetric(horizontal: 42.0),
                   child: Text(
