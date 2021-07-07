@@ -1,8 +1,13 @@
+import 'package:dsc_loyola_app/screens/event_info.dart';
 import 'package:flutter/material.dart';
 import 'package:dsc_loyola_app/screens/feature.dart';
 import 'package:dsc_loyola_app/screens/feature_info.dart';
 
 class Home extends StatefulWidget {
+  Home({Key key, this.info}) : super(key: key);
+
+  final EventInfo info;
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -25,7 +30,7 @@ class _HomeState extends State<Home> {
                         controller: controller2,
                         children: [
                           for (int j = 0; j < FeatureInfo(group: i).getLength(); j++)
-                            Feature(group: i, i: j),
+                            Feature(group: i, i: j, eventInfo: widget.info),
                         ],
                         scrollDirection: Axis.horizontal,
                       )

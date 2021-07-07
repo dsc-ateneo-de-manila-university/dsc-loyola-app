@@ -1,3 +1,5 @@
+import 'package:dsc_loyola_app/screens/event_info.dart';
+
 class FeatureInfo {
 
   String header;
@@ -23,20 +25,6 @@ class FeatureInfo {
     "Short Body Text 6: Habitasse elementum mauris. Elementum mauris diam, placerat aliquam viverra hendrerit.",
   ];
 
-  List<String> featuredEventsHeaders = [
-    "Featured Events 1",
-    "Featured Events 2",
-    "Featured Events 3",
-    "Featured Events 4",
-  ];
-
-  List<String> featuredEventsDescriptions = [
-    "Short Body Text 1: Habitasse elementum mauris. Elementum mauris diam.",
-    "Short Body Text 2: Habitasse elementum mauris. Elementum mauris diam.",
-    "Short Body Text 3: Habitasse elementum mauris. Elementum mauris diam.",
-    "Short Body Text 4: Habitasse elementum mauris. Elementum mauris diam.",
-  ];
-
   List<String> initiativesTextHeaders = [
     "Initiatives Text 1",
     "Initiatives Text 2",
@@ -54,8 +42,10 @@ class FeatureInfo {
       header = headlineHeaders[i];
       description = headlineDescriptions[i];
     } else if(group == 1) {
-      header = featuredEventsHeaders[i];
-      description = featuredEventsDescriptions[i];
+      EventInfo eventInfo = EventInfo();
+      eventInfo.getInfo(i);
+      header = eventInfo.header;
+      description = eventInfo.shortDescription;
     } else if(group == 2) {
       header = initiativesTextHeaders[i];
       description = initiativesTextDescriptions[i];
@@ -66,7 +56,8 @@ class FeatureInfo {
     if(group == 0) {
       return headlineHeaders.length;
     } else if(group == 1) {
-      return featuredEventsHeaders.length;
+      EventInfo eventInfo = EventInfo();
+      return eventInfo.getLength();
     } else if(group == 2) {
       return initiativesTextHeaders.length;
     } else {

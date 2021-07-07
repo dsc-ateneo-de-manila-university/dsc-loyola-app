@@ -1,12 +1,14 @@
+import 'package:dsc_loyola_app/screens/event_info.dart';
 import 'package:dsc_loyola_app/screens/feature_info.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Feature extends StatefulWidget {
-  Feature({Key key, this.group, this.i}) : super(key: key);
+  Feature({Key key, this.group, this.i, this.eventInfo}) : super(key: key);
 
   final int group;
   final int i;
+  final EventInfo eventInfo;
 
   @override
   _FeatureState createState() => _FeatureState();
@@ -70,14 +72,27 @@ class _FeatureState extends State<Feature> {
                 ),
                 SizedBox(height: 477.0), // TODO: make it constrained to bottom para kahit anong gadget puwede
                 SafeArea(
-                  minimum: const EdgeInsets.symmetric(horizontal: 42.0),
-                  child: Text(
-                    info.header,
-                    style: GoogleFonts.openSans(
-                      fontSize: 32.0,
-                      color: Color(0xff317BFD),
-                      fontWeight: FontWeight.bold,
+                  minimum: const EdgeInsets.symmetric(horizontal: 33.0),
+                  child: TextButton(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        info.header,
+                        style: GoogleFonts.openSans(
+                          fontSize: 32.0,
+                          color: Color(0xff317BFD),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
+                    onPressed: () {
+                      if(widget.group == 1) {
+                        Navigator.pushNamed(context, '/Event', arguments: {
+                          'EventNumber': widget.i,
+                          'EventInfo': widget.eventInfo,
+                        });
+                      }
+                    },
                   ),
                 ),
                 SizedBox(height: 9.0),

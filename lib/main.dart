@@ -9,6 +9,8 @@ import 'package:dsc_loyola_app/screens/profile.dart';
 import 'package:dsc_loyola_app/screens/jobs.dart';
 import 'package:dsc_loyola_app/screens/about.dart';
 import 'package:dsc_loyola_app/screens/settings.dart';
+import 'package:dsc_loyola_app/screens/expanded_event.dart';
+import 'package:dsc_loyola_app/screens/event_info.dart';
 
 void main() => runApp(MaterialApp(
   initialRoute: '/',
@@ -17,6 +19,7 @@ void main() => runApp(MaterialApp(
       '/SignIn': (context) => SignIn(),
       '/LogIn': (context) => LogIn(),
       '/Home': (context) => Navigation(),
+      '/Event': (context) => ExpandedEvent(),
   }));
 
 class MyApp extends StatelessWidget {
@@ -54,7 +57,7 @@ class _NavigationState extends State<Navigation> {
 
   final List<Widget> _children = [ // except for Home(), these are all placeholders for the moment
     Calendar(),
-    Home(),
+    Home(info: EventInfo()),
     Tracker(),
     Profile(),
     Jobs(),
