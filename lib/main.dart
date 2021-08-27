@@ -1,324 +1,126 @@
 import 'package:flutter/material.dart';
+import 'package:dsc_loyola_app/screens/sign_in.dart';
+import 'package:dsc_loyola_app/screens/home_page.dart';
+import 'package:dsc_loyola_app/screens/log_in.dart';
+import 'package:dsc_loyola_app/screens/home.dart';
+import 'package:dsc_loyola_app/screens/calendar.dart';
+import 'package:dsc_loyola_app/screens/tracker.dart';
+import 'package:dsc_loyola_app/screens/profile.dart';
+import 'package:dsc_loyola_app/screens/jobs.dart';
+import 'package:dsc_loyola_app/screens/about.dart';
+import 'package:dsc_loyola_app/screens/settings.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MaterialApp(
+  initialRoute: '/',
+  routes: {
+      '/': (context) => MyHomePage(),
+      '/SignIn': (context) => SignIn(),
+      '/LogIn': (context) => LogIn(),
+      '/Home': (context) => Navigation(),
+  }));
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tracker',
+      title: 'DSC Loyola App',
       theme: ThemeData(
-        primaryColor: Colors.white
+        primarySwatch: Colors.blue,
       ),
-      home: Tracker(),
+      home: Navigation(),
     );
   }
 }
 
-class Tracker extends StatelessWidget {
+class Navigation extends StatefulWidget {
+  @override
+  _NavigationState createState() => _NavigationState();
+}
+
+class _NavigationState extends State<Navigation> {
+
+  int _currentIndex = 1;
+  int _menuIndex = -1;
+
+  final List<Widget> _children = [
+    Calendar(),
+    Home(),
+    Tracker(),
+    Profile(),
+    Jobs(),
+    About(),
+    Settings(),
+  ];
+
+  static const List<String> pages = [
+    'Profile',
+    'Jobs & Internships',
+    'About the Org',
+    'Settings',
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+      _menuIndex = -1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(icon: Icon(Icons.menu, size: 36.0,), onPressed: null)
-        ],
-      ),
-      body: Container(
-        margin: EdgeInsets.only(top: 32.0, left: 16.0, right: 16.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Overview",
-                  style: Theme.of(context).textTheme.headline4.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 24.0,
-                  ),
-                ),
-              ],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Colors.white,
+          leading: PopupMenuButton<String>(
+            onSelected: (value) {
+              setState(() {
+                _menuIndex = pages.indexOf(value);
+              });
+            },
+            itemBuilder: (BuildContext context) {
+                return pages.map((String page) {
+                  return PopupMenuItem<String>(
+                    value: page,
+                    child: Text(page),
+                  );
+                }).toList();
+              },
+              icon: Icon(
+                  Icons.menu,
+                  color: Colors.grey[700],
+                  size: 32.0,
+              ),
+              offset: Offset(0, 54),
             ),
-            Divider(height: 16.0,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color.fromARGB(255, 49, 123, 253)
-                  ),
-                  height: 88.0,
-                  width: 163.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.event_available_outlined, 
-                              color: Colors.white, 
-                              size: 36.0,
-                            )
-                          ],
-                        ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Events",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                "Applied",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.headline5.copyWith(
-                                  color: Colors.white
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color.fromARGB(255, 49, 123, 253)
-                  ),
-                  height: 88.0,
-                  width: 163.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.assignment_turned_in_outlined,
-                              color: Colors.white,
-                              size: 36.0,
-                            )
-                          ],
-                        ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Projects",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                "Applied",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.headline5.copyWith(
-                                  color: Colors.white
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+        ),
+        body: _menuIndex == -1 ? _children[_currentIndex] : _children[_menuIndex + 3],
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: onTabTapped,
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(
+                  Icons.calendar_today_outlined,
+                  color: _currentIndex == 0 ? Color(0xff317BFD) : Colors.grey[700]),
+              label: "CALENDAR",
             ),
-            Divider(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color.fromARGB(255, 49, 123, 253)
-                  ),
-                  height: 88.0,
-                  width: 163.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.lightbulb_outlined, 
-                              color: Colors.white, 
-                              size: 36.0,
-                            )
-                          ],
-                        ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Projects",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                "Saved",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.headline5.copyWith(
-                                  color: Colors.white
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Color.fromARGB(255, 49, 123, 253)
-                  ),
-                  height: 88.0,
-                  width: 163.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.calendar_today_outlined,
-                              color: Colors.white,
-                              size: 36.0,
-                            )
-                          ],
-                        ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Jobs",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                "Saved",
-                                style: Theme.of(context).textTheme.subtitle1.copyWith(
-                                  color: Colors.white
-                                ),
-                              ),
-                              Text(
-                                "0",
-                                style: Theme.of(context).textTheme.headline5.copyWith(
-                                  color: Colors.white
-                                ),
-                              )
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: new Icon(
+                  Icons.home_outlined,
+                  color: _currentIndex == 1 ? Color(0xff317BFD) : Colors.grey[700]),
+              label: "HOME",
             ),
-            Divider(height: 16.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text(
-                  "Activity",
-                  style: Theme.of(context).textTheme.headline4.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 24.0
-                  ),
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: new Icon(
+                  Icons.mobile_friendly,
+                  color: _currentIndex == 2 ? Color(0xff317BFD) : Colors.grey[700]),
+              label: "TRACKER",
             ),
-            Divider(height: 16.0,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.1),
-                        spreadRadius: 0.05,
-                        blurRadius: 0.3,
-                        offset: Offset(0, 1),
-                      )
-                    ]    
-                  ),
-                  child: Image.asset(
-                    'images/Horizontal_Card_Sandbox.png',
-                    height: 168.0,
-                    width: 339.0
-                  ),
-                )
-              ],
-            )
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 2,
-        fixedColor: Color.fromARGB(255, 49, 123, 253),
-        items: [
-          BottomNavigationBarItem(
-            label: "CALENDAR",
-            icon: Icon(Icons.calendar_today)
-          ),
-          BottomNavigationBarItem(
-            label: "HOME",
-            icon: Icon(Icons.home)
-          ),
-          BottomNavigationBarItem(
-            label: "TRACKER",
-            icon: Icon(Icons.mobile_friendly)
-          ),
-        ],
-        onTap: null,
-      ),
-    );
+    ) ;
   }
 }
